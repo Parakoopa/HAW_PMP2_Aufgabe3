@@ -1,6 +1,7 @@
 package kalender.marco;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import kalender.interfaces.Datum;
 import kalender.interfaces.Dauer;
@@ -15,21 +16,39 @@ public class DatumImpl implements Datum {
 	private Calendar intern;
 	
 	public DatumImpl(Tag tag){
+		this(new GregorianCalendar(
+				tag.getJahr(),
+				tag.getMonat(),
+				tag.getTagImMonat(),
+				0,
+				0
+		));
+		// Kann auch durch
+		//this(tag, new UhrzeitImpl());
+		// ersetzt werden, aber würde dann Impl Klasse nutzen.
 	}
 	public DatumImpl(Tag tag, Uhrzeit uhrzeit ) {
+		this(new GregorianCalendar(
+				tag.getJahr(),
+				tag.getMonat(),
+				tag.getTagImMonat(),
+				uhrzeit.getStunde(),
+				uhrzeit.getMinuten()
+		));
 	}
 
 	public DatumImpl(Datum d) {
+		this(d.getTag(), d.getUhrzeit());
 	}
 
 	private DatumImpl(Calendar intern) {
+		this.intern = intern;
 	}
 	
 	
 
 	public int compareTo(Datum o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.abstand(o).inMinuten();
 	}
 
 
