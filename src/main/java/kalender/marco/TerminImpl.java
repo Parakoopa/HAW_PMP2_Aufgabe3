@@ -1,5 +1,6 @@
 package kalender.marco;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import kalender.interfaces.Datum;
@@ -11,56 +12,68 @@ import kalender.interfaces.Woche;
 
 public class TerminImpl implements Termin {
 
+	private String beschreibung;
+	private Datum datum;
+	private Dauer dauer;
+
 	public TerminImpl(String beschreibung, Datum datum, Dauer dauer) {
+		this.beschreibung = beschreibung;
+		this.datum = datum;
+		this.dauer = dauer;
 	}
 
 
 
 	public int compareTo(Termin o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.datum.compareTo(o.getDatum());
 	}
 
 
 	public String getBeschreibung() {
-		// TODO Auto-generated method stub
-		return null;
+		return beschreibung;
 	}
 
 
 	public Datum getDatum() {
-		// TODO Auto-generated method stub
-		return null;
+		return datum; // XXX: Besser wäre es hier einen Klon rauszugeben, aber clone() ist protected
 	}
 
 
 	public Dauer getDauer() {
-		// TODO Auto-generated method stub
-		return null;
+		return dauer; // XXX: Besser wäre es hier einen Klon rauszugeben, aber clone() ist protected
 	}
 
 
 	public Termin verschiebeAuf(Datum datum) {
-		// TODO Auto-generated method stub
+		this.datum = datum;
 		return null;
 	}
 
 
 	public Map<Datum, Termin> termineIn(Monat monat) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Datum, Termin> returnMap = new HashMap<>();
+		if (datum.getMonat().equals(monat)) {
+			returnMap.put(this.getDatum(), this);
+		}
+		return returnMap;
 	}
 
 
 	public Map<Datum, Termin> termineIn(Woche woche) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Datum, Termin> returnMap = new HashMap<>();
+		if (datum.getWoche().equals(woche)) {
+			returnMap.put(this.getDatum(), this);
+		}
+		return returnMap;
 	}
 
 
 	public Map<Datum, Termin> termineAn(Tag tag) {
-		// TODO Auto-generated method stub
-		return null;
+		Map<Datum, Termin> returnMap = new HashMap<>();
+		if (datum.getTag().equals(tag)) {
+			returnMap.put(this.getDatum(), this);
+		}
+		return returnMap;
 	}
 
 }

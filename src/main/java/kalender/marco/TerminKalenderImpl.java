@@ -2,6 +2,7 @@ package kalender.marco;
 
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import kalender.interfaces.Datum;
@@ -33,45 +34,45 @@ public class TerminKalenderImpl implements TerminKalender {
 
 
 	public boolean terminLoeschen(Termin termin) {
-		return termine.removeIf(terminInList -> terminInList == termin);
+		return termine.removeIf(terminInList -> terminInList.equals(termin));
 	}
 
 
 	public boolean enthaeltTermin(Termin termin) {
-		return termine.stream().anyMatch(terminInlist -> terminInlist == termin);
+		return termine.stream().anyMatch(terminInlist -> terminInlist.equals(termin));
 	}
 
 
 	public Map<Datum, List<Termin>> termineFuerTag(Tag tag) {
 		return termine
 				.stream()
-				.filter(termin -> termin.getDatum().getTag() == tag)
+				.flatMap(termin -> termin.termineAn(tag).values().stream())
 				.collect(Collectors.groupingBy(
-					Termin::getDatum,
-					Collectors.toList()
-				));
+						Termin::getDatum,
+						Collectors.toList()
+				);
 	}
 
 
 	public Map<Datum, List<Termin>> termineFuerWoche(Woche woche) {
 		return termine
 				.stream()
-				.filter(termin -> termin.getDatum().getWoche() == woche)
+				.flatMap(termin -> termin.termineIn(woche).values().stream())
 				.collect(Collectors.groupingBy(
 						Termin::getDatum,
 						Collectors.toList()
-				));
+				);
 	}
 
 
 	public Map<Datum, List<Termin>> termineFuerMonat(Monat monat) {
 		return termine
 				.stream()
-				.filter(termin -> termin.getDatum().getMonat() == monat)
+				.flatMap(termin -> termin.termineIn(monat).values().stream())
 				.collect(Collectors.groupingBy(
 						Termin::getDatum,
 						Collectors.toList()
-				));
+				);
 	}
 
 }
