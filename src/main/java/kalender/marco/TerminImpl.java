@@ -46,7 +46,7 @@ public class TerminImpl implements Termin {
 
 	public Termin verschiebeAuf(Datum datum) {
 		this.datum = datum;
-		return null;
+		return this;
 	}
 
 
