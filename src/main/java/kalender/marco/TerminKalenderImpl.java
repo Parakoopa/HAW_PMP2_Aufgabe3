@@ -1,8 +1,8 @@
 package kalender.marco;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import kalender.interfaces.Datum;
@@ -15,6 +15,10 @@ import kalender.interfaces.Woche;
 public class TerminKalenderImpl implements TerminKalender {
 
 	private List<Termin> termine;
+
+	public TerminKalenderImpl() {
+		this.termine = new ArrayList<>();
+	}
 
 
 	public boolean eintragen(Termin termin) {
