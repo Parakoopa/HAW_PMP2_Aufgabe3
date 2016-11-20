@@ -26,103 +26,103 @@ public class DatumImpl implements Datum {
 	}
 	
 	
-	@Override
+
 	public int compareTo(Datum o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public Tag getTag() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Woche getWoche() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Monat getMonat() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Uhrzeit getUhrzeit() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public int getJahr() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getTagImMonat() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getTagImJahr() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getWocheImMonat() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getWocheImJahr() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getMonatImJahr() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public Datum add(Dauer dauer) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Datum sub(Dauer dauer) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Dauer abstand(Datum d) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public long differenzInTagen(Datum d) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int inMinuten() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public Calendar inBasis() {
 		// TODO Auto-generated method stub
 		return null;

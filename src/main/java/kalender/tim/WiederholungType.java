@@ -2,13 +2,13 @@ package kalender.tim;
 
 public enum WiederholungType {
 	TAEGLICH("täglich") {
-		@Override
+
 		public int inTagen() {
 			return 1;
 		}
 	},
 	WOECHENTLICH("wöchentlich") {
-		@Override
+
 		public int inTagen() {
 			return 7;
 		}
@@ -20,7 +20,7 @@ public enum WiederholungType {
 		this.name = name;
 	}
 
-	@Override
+
 	public String toString() {
 		return name;
 	}

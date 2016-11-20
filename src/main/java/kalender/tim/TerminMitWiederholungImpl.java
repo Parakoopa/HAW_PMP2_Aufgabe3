@@ -33,19 +33,19 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 	}
 
 
-	@Override
+
 	public Map<Datum, Termin> termineIn(Monat monat) {
 		// TODO auf termineFuer zurückführen
 		return null;
 	}
 
-	@Override
+
 	public Map<Datum, Termin> termineIn(Woche woche) {
 		// TODO auf termineFuer zurückführen
 		return null;
 	}
 
-	@Override
+
 	public Map<Datum, Termin> termineAn(Tag tag) {
 		// TODO auf termineFuer zurückführen
 		return null;
@@ -55,18 +55,18 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 	/**
 	 * Beispiel für den naiven Iterator, der alle Wiederholungen explizit aufzaehlt
 	 */
-	@Override
+
 	public Iterator<Termin> iterator() {
 		return new Iterator<Termin>() {
 			private TerminMitWiederholung current = null;
 			private int howManySeen = 0;
 
-			@Override
+
 			public boolean hasNext() {
 				return howManySeen <= wdh.anzahl();
 			}
 
-			@Override
+
 			public Termin next() {
 				if (current == null) {
 					current = TerminMitWiederholungImpl.this;
@@ -81,18 +81,18 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 	}
 
 
-	@Override
+
 	public IntervallIterator<Datum> intervallIterator(int von, int bis) {
 		return new IntervallIterator<Datum>() {
 			// TODO end Index als upper bound merken / cursor initialisieren
 			
-			@Override
+
 			public boolean hasNext() {
 				// TODO in Abhängigkeit von cursor und upper bound (upper bound ist inkl.)
 				return false;
 			}
 
-			@Override
+
 			public Datum next() {
 				// TODO nächstes Element mit geeigneter Methode von Wiederholung berechnen
 				return null;
@@ -102,7 +102,7 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 	}
 
 
-	@Override
+
 	public Map<Datum, Termin> termineFuer(DatumsGroesse groesse) {
 		// TODO Indizes fuer Start und End Intervall berechnen
 		
@@ -136,23 +136,23 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		public WiederholungImpl(Wiederholung wdh) {
 			this(wdh.getType(), wdh.anzahl(), wdh.getZyklus());
 		}
-		@Override
+
 		public WiederholungType getType() {
 			return wdhType;
 		}
-		@Override
+
 		public int getZyklus() {
 			return cycle;
 		}
-		@Override
+
 		public int anzahl() {
 			return anzahl;
 		}
-		@Override
+
 		public int maxIntervallIndex() {
 			return anzahl;
 		}
-		@Override
+
 		public int intervallLaenge() {
 			return cycle * wdhType.inTagen();
 		}
@@ -164,7 +164,7 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		 * gültigen Bereichs maxIntervallIndex liegen. Nutzer der Methode müssen
 		 * sicher stellen, dass die Gültigkeit des Index geprüft wird.
 		 */
-		@Override
+
 		public int naechstesIntervall(Datum dat) {
 			long diff = dat.differenzInTagen(getDatum());
 			long div = diff / intervallLaenge();
@@ -195,7 +195,7 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		 * gültigen Bereichs maxIntervallIndex liegen. Nutzer der Methode müssen
 		 * sicher stellen, dass die Gültigkeit des Index geprüft wird.
 		 */
-		@Override
+
 		public int vorherigesIntervall(Datum dat) {
 			long diff = dat.differenzInTagen(getDatum());
 			long div = diff / intervallLaenge();
@@ -217,14 +217,14 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		/*
 		 * @see kalender.interfaces.Wiederholung#naechstesDatum()
 		 */
-		@Override
+
 		public Datum naechstesDatum() {
 			return naechstesDatum(1);
 		}
 		/*
 		 * @see kalender.interfaces.Wiederholung#naechstesDatum(int)
 		 */
-		@Override
+
 		public Datum naechstesDatum(int faktor) {
 			int anzahlTage = faktor * intervallLaenge();
 			return new DatumImpl(getDatum()).add(new DauerImpl(anzahlTage, 0, 0));
@@ -232,14 +232,14 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		/*
 		 * @see kalender.interfaces.Wiederholung#sub(int)
 		 */
-		@Override
+
 		public Wiederholung sub(int wdhCount) {
 			return new WiederholungImpl(wdhType, anzahl - wdhCount, cycle);
 		}
 		/*
 		 * @see kalender.interfaces.Wiederholung#add(int)
 		 */
-		@Override
+
 		public Wiederholung add(int wdhCount) {
 			return new WiederholungImpl(wdhType, anzahl + wdhCount, cycle);
 		}

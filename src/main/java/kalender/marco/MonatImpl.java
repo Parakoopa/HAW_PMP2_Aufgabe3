@@ -16,25 +16,25 @@ public class MonatImpl implements Monat {
 	public MonatImpl(int jahr, int monat) {
 	}
 
-	@Override
+
 	public Datum getStart() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public Datum getEnde() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
+
 	public int getMonat() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getJahr() {
 		// TODO Auto-generated method stub
 		return 0;

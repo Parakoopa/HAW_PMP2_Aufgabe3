@@ -25,19 +25,19 @@ public class UhrzeitImpl implements Uhrzeit {
 		this(o.getStunde(), o.getMinuten());
 	}
 
-	@Override
+
 	public int compareTo(Uhrzeit o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getStunde() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+
 	public int getMinuten() {
 		// TODO Auto-generated method stub
 		return 0;
