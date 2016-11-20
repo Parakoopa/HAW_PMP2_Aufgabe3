@@ -50,7 +50,7 @@ public class TerminKalenderImpl implements TerminKalender {
 				.collect(Collectors.groupingBy(
 						Termin::getDatum,
 						Collectors.toList()
-				);
+				));
 	}
 
 
@@ -61,7 +61,7 @@ public class TerminKalenderImpl implements TerminKalender {
 				.collect(Collectors.groupingBy(
 						Termin::getDatum,
 						Collectors.toList()
-				);
+				));
 	}
 
 
@@ -72,7 +72,7 @@ public class TerminKalenderImpl implements TerminKalender {
 				.collect(Collectors.groupingBy(
 						Termin::getDatum,
 						Collectors.toList()
-				);
+				));
 	}
 
 }
