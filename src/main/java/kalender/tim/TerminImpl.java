@@ -1,5 +1,6 @@
 package kalender.tim;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import kalender.interfaces.Datum;
@@ -10,8 +11,13 @@ import kalender.interfaces.Termin;
 import kalender.interfaces.Woche;
 
 public class TerminImpl implements Termin {
-
+	private Dauer dauer;
+	private Datum datum;
+	private String beschreibung;
 	public TerminImpl(String beschreibung, Datum datum, Dauer dauer) {
+		this.beschreibung = beschreibung;
+		this.datum = datum;
+		this.dauer = dauer;
 	}
 
 
@@ -21,46 +27,40 @@ public class TerminImpl implements Termin {
 		return 0;
 	}
 
-
-	public String getBeschreibung() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public Datum getDatum() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	public Dauer getDauer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	public String getBeschreibung() {return this.beschreibung;}
+	public Datum getDatum() {return this.datum;}
+	public Dauer getDauer() {return this.dauer;}
 
 	public Termin verschiebeAuf(Datum datum) {
-		// TODO Auto-generated method stub
+		this.datum = datum;
 		return null;
 	}
 
 
 	public Map<Datum, Termin> termineIn(Monat monat) {
-		// TODO Auto-generated method stub
-		return null;
+        Map<Datum, Termin> map = new HashMap<>();
+		if(datum.getMonat().equals(monat)) {
+			map.put(this.getDatum(),this);
+		}
+		return map;
 	}
 
 
 	public Map<Datum, Termin> termineIn(Woche woche) {
-		// TODO Auto-generated method stub
-		return null;
+        Map<Datum, Termin> map = new HashMap<>();
+        if(datum.getMonat().equals(woche)) {
+            map.put(this.getDatum(),this);
+        }
+        return map;
 	}
 
 
 	public Map<Datum, Termin> termineAn(Tag tag) {
-		// TODO Auto-generated method stub
-		return null;
+        Map<Datum, Termin> map = new HashMap<>();
+        if(datum.getMonat().equals(tag)) {
+            map.put(this.getDatum(),this);
+        }
+        return map;
 	}
 
 }

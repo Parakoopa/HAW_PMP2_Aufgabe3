@@ -1,7 +1,9 @@
 package kalender.tim;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import kalender.interfaces.Datum;
 import kalender.interfaces.Monat;
@@ -11,47 +13,66 @@ import kalender.interfaces.TerminKalender;
 import kalender.interfaces.Woche;
 
 public class TerminKalenderImpl implements TerminKalender {
-
+	private List<Termin> kalender = new ArrayList<Termin>();
 
 	public boolean eintragen(Termin termin) {
-		// TODO Auto-generated method stub
-		return false;
+	    try {
+            this.kalender.add(termin);
+            return true;
+        }
+        catch(NullPointerException NE ) {
+            System.out.println("Can't add termin " + NE.getMessage() + " to Kalender!");
+        }
+        return false;
 	}
 
 
 	public void verschiebenAuf(Termin termin, Datum datum) {
-		// TODO Auto-generated method stub
-
+        try {
+            termin.verschiebeAuf(datum);
+        }
+        catch(NullPointerException NE ) {
+            System.out.println("Termin" + NE.getMessage() + " can't be found!");
+        }
 	}
 
 
 	public boolean terminLoeschen(Termin termin) {
-		// TODO Auto-generated method stub
+        try {
+            this.kalender.remove(termin);
+        }
+        catch(NullPointerException NE ) {
+            System.out.println("Termin" + NE.getMessage() + " can't be found!");
+        }
 		return false;
 	}
 
 
 	public boolean enthaeltTermin(Termin termin) {
-		// TODO Auto-generated method stub
-		return false;
+            return this.kalender.contains(termin);
 	}
 
 
 	public Map<Datum, List<Termin>> termineFuerTag(Tag tag) {
-		// TODO Auto-generated method stub
-		return null;
+		return kalender
+                .stream()
+                .filter(s -> s.getDatum().getTag() == tag)
+                .collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
-
-	public Map<Datum, List<Termin>> termineFuerWoche(Woche woche) {
-		// TODO Auto-generated method stub
-		return null;
+    public Map<Datum, List<Termin>> termineFuerWoche(Woche woche) {
+        return kalender
+                .stream()
+                .filter(s -> s.getDatum().getTag() == woche)
+                .collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
 
 	public Map<Datum, List<Termin>> termineFuerMonat(Monat monat) {
-		// TODO Auto-generated method stub
-		return null;
+        return kalender
+                .stream()
+                .filter(s -> s.getDatum().getTag() == monat)
+                .collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
 }
