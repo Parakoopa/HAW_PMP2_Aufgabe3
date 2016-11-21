@@ -20,17 +20,19 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 	private Wiederholung wdh;
 
  // TODO Konstruktorprobleme auflösen
-	public TerminMitWiederholungImpl(String beschreibung, Datum start, Dauer dauer, WiederholungType type, int anzahl, int zyklus) {
-//		Wiederholung wdh = new Wiederholung(type,anzahl,zyklus);
-//		return wdh;
+	public TerminMitWiederholungImpl(Termin termin, WiederholungType type, int anzahl, int zyklus) { //String beschreibung, Datum start, Dauer dauer,
+		this.wdh.sub(anzahl);
+		this.wdh.anzahl()
 	}
 
-	public TerminMitWiederholungImpl(String beschreibung, Datum start, Dauer dauer, Wiederholung wdh) {
+	public TerminMitWiederholungImpl(Termin termin, Wiederholung wdh) { //String beschreibung, Datum start, Dauer dauer,
+
 	}
 	
 	
 	public Wiederholung getWdh() {
-		return new WiederholungImpl(wdh);
+
+		return this.wdh.();
 	}
 
 

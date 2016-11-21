@@ -19,8 +19,7 @@ public class TagImpl implements Tag {
 
 
 	public Datum getStart() {
-		// TODO Auto-generated method stub
-		return null;
+		return new DatumImpl(0,0);
 	}
 
 

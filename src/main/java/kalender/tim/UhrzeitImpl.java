@@ -27,20 +27,17 @@ public class UhrzeitImpl implements Uhrzeit {
 
 
 	public int compareTo(Uhrzeit o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.compareTo(o);
 	}
 
 
 	public int getStunde() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.HOUR);
 	}
 
 
 	public int getMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.MINUTE);
 	}
 
 }

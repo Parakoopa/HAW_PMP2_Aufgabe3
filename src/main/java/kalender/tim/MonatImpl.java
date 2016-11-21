@@ -18,8 +18,7 @@ public class MonatImpl implements Monat {
 
 
 	public Datum getStart() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.intern.
 	}
 
 

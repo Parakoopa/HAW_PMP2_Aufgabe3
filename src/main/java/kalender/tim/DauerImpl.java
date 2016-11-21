@@ -33,50 +33,41 @@ public class DauerImpl implements Dauer {
 
 
 	public int inMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.minuten;
 	}
 
-
 	public int inStunden() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.minuten/60;
 	}
 
 
 	public int inTagen() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.inStunden()/24;
 	}
 
 
 	public int inWochen() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.inTagen()/7;
 	}
 
 
 	public int anteilMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.minuten%60;
 	}
 
 
 	public int anteilStunden() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.inStunden()%24;
 	}
 
 
 	public int anteilTage() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.inTagen()%7;
 	}
 
 
 	public int anteilWochen() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.inTagen()%30; //somehow get real month lenghts
 	}
 
 }

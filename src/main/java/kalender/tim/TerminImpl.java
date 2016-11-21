@@ -14,6 +14,7 @@ public class TerminImpl implements Termin {
 	private Dauer dauer;
 	private Datum datum;
 	private String beschreibung;
+
 	public TerminImpl(String beschreibung, Datum datum, Dauer dauer) {
 		this.beschreibung = beschreibung;
 		this.datum = datum;
@@ -23,8 +24,7 @@ public class TerminImpl implements Termin {
 
 
 	public int compareTo(Termin o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.compareTo(o);
 	}
 
 	public String getBeschreibung() {return this.beschreibung;}
