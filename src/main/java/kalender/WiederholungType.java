@@ -1,4 +1,4 @@
-package kalender.marco;
+package kalender;
 
 public enum WiederholungType {
 	TAEGLICH("täglich") {
