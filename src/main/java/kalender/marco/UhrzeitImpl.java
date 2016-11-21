@@ -33,14 +33,12 @@ public class UhrzeitImpl implements Uhrzeit {
 
 
 	public int getStunde() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.HOUR_OF_DAY);
 	}
 
 
 	public int getMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.MINUTE);
 	}
 
 }

@@ -35,12 +35,12 @@ public class TerminImpl implements Termin {
 
 
 	public Datum getDatum() {
-		return datum; // XXX: Besser wäre es hier einen Klon rauszugeben, aber clone() ist protected
+		return new DatumImpl(datum);
 	}
 
 
 	public Dauer getDauer() {
-		return dauer; // XXX: Besser wäre es hier einen Klon rauszugeben, aber clone() ist protected
+		return new DauerImpl(dauer.inMinuten());
 	}
 
 
