@@ -27,8 +27,7 @@ public class UhrzeitImpl implements Uhrzeit {
 
 
 	public int compareTo(Uhrzeit o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (getStunde() * 60 + getMinuten()) - (o.getStunde() * 60 + o.getMinuten());
 	}
 
 

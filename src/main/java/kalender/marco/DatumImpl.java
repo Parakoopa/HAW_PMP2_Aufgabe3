@@ -94,38 +94,34 @@ public class DatumImpl implements Datum {
 
 
 	public Datum add(Dauer dauer) {
-		// TODO Auto-generated method stub
-		return null;
+		intern.add(Calendar.MINUTE, dauer.inMinuten());
+		return new DatumImpl(this);
 	}
 
 
 	public Datum sub(Dauer dauer) {
-		// TODO Auto-generated method stub
-		return null;
+		intern.add(Calendar.MINUTE, -dauer.inMinuten());
+		return new DatumImpl(this);
 	}
 
 
 	public Dauer abstand(Datum d) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DauerImpl(this.inMinuten()-d.inMinuten());
 	}
 
 
 	public long differenzInTagen(Datum d) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.abstand(d).inTagen();
 	}
 
 
 	public int inMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int)(intern.getTimeInMillis() * .001 / 60);
 	}
 
 
 	public Calendar inBasis() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Calendar) intern.clone();
 	}
 
 }

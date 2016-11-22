@@ -14,45 +14,44 @@ public class DauerImpl implements Dauer {
 	private int minuten;
 	
 	public DauerImpl(Datum d1, Datum d2) {
+		this(d1.inMinuten() - d2.inMinuten());
 	}
 
 	public DauerImpl(int minuten) {
+		this.minuten = minuten;
 	}
 	
 	public DauerImpl(int stunden, int minuten) {
+		this(stunden * 60 + minuten);
 	}
 
 	public DauerImpl(int tage, int stunden, int minuten) {
+		this(tage * 24 + stunden, minuten);
 	}
 
 
 	public int compareTo(Dauer o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.inMinuten() - o.inMinuten();
 	}
 
 
 	public int inMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return minuten;
 	}
 
 
 	public int inStunden() {
-		// TODO Auto-generated method stub
-		return 0;
+		return minuten / 60;
 	}
 
 
 	public int inTagen() {
-		// TODO Auto-generated method stub
-		return 0;
+		return inStunden() / 24;
 	}
 
 
 	public int inWochen() {
-		// TODO Auto-generated method stub
-		return 0;
+		return inTagen() / 7;
 	}
 
 
