@@ -62,10 +62,7 @@ public class TerminKalenderImpl implements TerminKalender {
 		return termine
 				.stream()
 				.flatMap(termin -> termin.termineIn(woche).values().stream())
-				.collect(Collectors.groupingBy(
-						Termin::getDatum,
-						Collectors.toList()
-				));
+				.collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
 
@@ -73,10 +70,7 @@ public class TerminKalenderImpl implements TerminKalender {
 		return termine
 				.stream()
 				.flatMap(termin -> termin.termineIn(monat).values().stream())
-				.collect(Collectors.groupingBy(
-						Termin::getDatum,
-						Collectors.toList()
-				));
+				.collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
 }
