@@ -27,8 +27,7 @@ public class DauerImpl implements Dauer {
 
 
 	public int compareTo(Dauer o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.minuten - o.inMinuten();
 	}
 
 

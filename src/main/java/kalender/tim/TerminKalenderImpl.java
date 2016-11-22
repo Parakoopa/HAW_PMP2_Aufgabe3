@@ -63,7 +63,7 @@ public class TerminKalenderImpl implements TerminKalender {
     public Map<Datum, List<Termin>> termineFuerWoche(Woche woche) {
         return kalender
                 .stream()
-                .filter(s -> s.getDatum().getTag() == woche)
+                .filter(s -> s.getDatum().getWoche() == woche)
                 .collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
@@ -71,7 +71,7 @@ public class TerminKalenderImpl implements TerminKalender {
 	public Map<Datum, List<Termin>> termineFuerMonat(Monat monat) {
         return kalender
                 .stream()
-                .filter(s -> s.getDatum().getTag() == monat)
+                .filter(s -> s.getDatum().getMonat() == monat)
                 .collect(Collectors.groupingBy(Termin::getDatum));
 	}
 

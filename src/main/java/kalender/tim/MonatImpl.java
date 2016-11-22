@@ -18,25 +18,28 @@ public class MonatImpl implements Monat {
 
 
 	public Datum getStart() {
-		return this.intern.
-	}
+		Calendar copy = (Calendar) intern.clone();
+		copy.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		return new DatumImpl(
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)));
 
+	}
 
 	public Datum getEnde() {
-		// TODO Auto-generated method stub
-		return null;
+		Calendar copy = (Calendar) intern.clone();
+		copy.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return new DatumImpl(
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
+				new UhrzeitImpl(23, 59));
 	}
 
-
 	public int getMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.MONTH);
 	}
 
 
 	public int getJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.YEAR);
 	}
 
 }

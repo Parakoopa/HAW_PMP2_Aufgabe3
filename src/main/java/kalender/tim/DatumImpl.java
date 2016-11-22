@@ -65,7 +65,8 @@ public class DatumImpl implements Datum {
 
 
 	public Datum add(Dauer dauer) {
-		return new Dauer(this.inBasis() + dauer.inMinuten());
+
+		return new Datum (this.inBasis() + dauer.());
 
 	}
 	public Datum sub(Dauer dauer) {return this.sub(dauer);}
@@ -73,16 +74,16 @@ public class DatumImpl implements Datum {
 
 
 	public long differenzInTagen(Datum d) {
-		return this.intern.getTimeInMillis() - d.getTimeInMillis();
+		return this.intern.get(Calendar.DAY_OF_YEAR) - d.getTagImJahr();
 	}
 
 	public int inMinuten() {
-		return this.intern.;
-	}
+		return this.intern.get(Calendar.MINUTE);
+	}//use Dauer.inMinuten instead?
 
 	public Calendar inBasis() {
-		return Calendar copy = (Calendar) intern.clone();
-
+		Calendar copy = (Calendar) intern.clone();
+		return copy;
 	}
 
 }

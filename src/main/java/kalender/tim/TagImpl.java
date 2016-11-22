@@ -19,55 +19,56 @@ public class TagImpl implements Tag {
 
 
 	public Datum getStart() {
-		return new DatumImpl(0,0);
-	}
+		Calendar copy = (Calendar) intern.clone();
+		copy.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		return new DatumImpl(
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)));
 
+	}
 
 	public Datum getEnde() {
-		// TODO Auto-generated method stub
-		return null;
+		Calendar copy = (Calendar) intern.clone();
+		copy.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return new DatumImpl(
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
+				new UhrzeitImpl(23, 59));
 	}
 
 
-	public int compareTo(Tag o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	public int compareTo(Datum o) {return this.compareTo(o);}
 
 
 	public int getJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.YEAR);
 	}
 
 
 	public int getMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.MONTH);
 	}
 
 
 	public int getTagImJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.DAY_OF_YEAR);
 	}
 
 
 	public int getTagImMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.intern.get(Calendar.DAY_OF_MONTH);
 	}
 
 
 	public long differenzInTagen(Tag other) {
-		// TODO Auto-generated method stub
-		return 0;
+		Calendar otherCalendar  = Calendar.getInstance();
+		otherCalendar.clear();
+		intern.set(Calendar.DAY_OF_YEAR, other.getTagImJahr()); //too complicated?
+		return this.intern.getTimeInMillis() - otherCalendar.getTimeInMillis();
 	}
 
 
 	public Calendar inBasis() {
-		// TODO Auto-generated method stub
-		return null;
+		Calendar copy = (Calendar) intern.clone();
+		return copy;
 	}
 
 }
