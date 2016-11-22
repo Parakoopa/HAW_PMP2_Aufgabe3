@@ -3,7 +3,7 @@ package kalender.tim;
 import java.util.Iterator;
 import java.util.Map;
 
-import kalender.TerminMitWiederholungImpl.WiederholungImpl;
+import kalender.WiederholungType;
 import kalender.interfaces.Datum;
 import kalender.interfaces.DatumsGroesse;
 import kalender.interfaces.Dauer;

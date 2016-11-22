@@ -16,25 +16,16 @@ public class DatumImpl implements Datum {
 	private Calendar intern;
 	
 	public DatumImpl(Tag tag){
-		this(new GregorianCalendar(
-				tag.getJahr(),
-				tag.getMonat(),
-				tag.getTagImMonat(),
-				0,
-				0
-		));
-		// Kann auch durch
-		//this(tag, new UhrzeitImpl());
-		// ersetzt werden, aber würde dann Impl Klasse nutzen.
+		this(tag, new UhrzeitImpl());
 	}
+
 	public DatumImpl(Tag tag, Uhrzeit uhrzeit ) {
-		this(new GregorianCalendar(
-				tag.getJahr(),
-				tag.getMonat(),
-				tag.getTagImMonat(),
-				uhrzeit.getStunde(),
-				uhrzeit.getMinuten()
-		));
+		intern = Calendar.getInstance();
+		intern.clear();
+		intern.set(Calendar.YEAR, tag.getJahr());
+		intern.set(Calendar.MONTH, tag.getMonat());
+		intern.set(Calendar.HOUR_OF_DAY, uhrzeit.getStunde());
+		intern.set(Calendar.MINUTE, uhrzeit.getMinuten());
 	}
 
 	public DatumImpl(Datum d) {
@@ -53,98 +44,84 @@ public class DatumImpl implements Datum {
 
 
 	public Tag getTag() {
-		// TODO Auto-generated method stub
-		return null;
+		return new TagImpl(getJahr(), getMonatImJahr(), getTagImMonat());
 	}
 
 
 	public Woche getWoche() {
-		// TODO Auto-generated method stub
-		return null;
+		return new WocheImpl(getJahr(), getMonatImJahr(), getWocheImMonat());
 	}
 
 
 	public Monat getMonat() {
-		// TODO Auto-generated method stub
-		return null;
+		return new MonatImpl(getJahr(), getMonatImJahr());
 	}
 
 
 	public Uhrzeit getUhrzeit() {
-		// TODO Auto-generated method stub
-		return null;
+		return new UhrzeitImpl(intern.get(Calendar.HOUR_OF_DAY), intern.get(Calendar.MINUTE));
 	}
 
 
 	public int getJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.YEAR);
 	}
 
 
 	public int getTagImMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.DAY_OF_MONTH);
 	}
 
 
 	public int getTagImJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.DAY_OF_YEAR);
 	}
 
 
 	public int getWocheImMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.WEEK_OF_MONTH);
 	}
 
 
 	public int getWocheImJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.WEEK_OF_YEAR);
 	}
 
 
 	public int getMonatImJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.MONTH);
 	}
 
 
 	public Datum add(Dauer dauer) {
-		// TODO Auto-generated method stub
-		return null;
+		intern.add(Calendar.MINUTE, dauer.inMinuten());
+		return new DatumImpl(this);
 	}
 
 
 	public Datum sub(Dauer dauer) {
-		// TODO Auto-generated method stub
-		return null;
+		intern.add(Calendar.MINUTE, -dauer.inMinuten());
+		return new DatumImpl(this);
 	}
 
 
 	public Dauer abstand(Datum d) {
-		// TODO Auto-generated method stub
-		return null;
+		return new DauerImpl(this.inMinuten()-d.inMinuten());
 	}
 
 
 	public long differenzInTagen(Datum d) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.abstand(d).inTagen();
 	}
 
 
 	public int inMinuten() {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int)(intern.getTimeInMillis() * .001 / 60);
 	}
 
 
 	public Calendar inBasis() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Calendar) intern.clone();
 	}
 
 }

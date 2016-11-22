@@ -10,65 +10,74 @@ public class TagImpl implements Tag {
 	private Calendar intern; 
 	
 	public TagImpl(int jahr, int tagImJahr) {
+		intern = Calendar.getInstance();
+		intern.clear();
+		intern.set(Calendar.YEAR, jahr);
+		intern.set(Calendar.DAY_OF_YEAR, tagImJahr);
 	}
 	public TagImpl(int jahr, int monat, int tagImMonat) {
+		intern = Calendar.getInstance();
+		intern.clear();
+		intern.set(Calendar.YEAR, jahr);
+		intern.set(Calendar.MONTH, monat);
+		intern.set(Calendar.DAY_OF_MONTH, tagImMonat);
 	}
 	
 	public TagImpl(Tag tag) {
+		this(tag.getJahr(), tag.getTagImJahr());
 	}
 
 
 	public Datum getStart() {
-		// TODO Auto-generated method stub
-		return null;
+		Calendar copy = (Calendar) intern.clone();
+		copy.set(Calendar.HOUR_OF_DAY, 0);
+		return new DatumImpl(
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
+				new UhrzeitImpl(copy.get(Calendar.HOUR_OF_DAY),copy.get(Calendar.MINUTE)));
 	}
 
 
 	public Datum getEnde() {
-		// TODO Auto-generated method stub
-		return null;
+		Calendar copy = (Calendar) intern.clone();
+		copy.set(Calendar.HOUR_OF_DAY, copy.getActualMaximum(Calendar.HOUR_OF_DAY));
+		return new DatumImpl(
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
+				new UhrzeitImpl(copy.get(Calendar.HOUR_OF_DAY),copy.get(Calendar.MINUTE)));
 	}
 
 
 	public int compareTo(Tag o) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (int)this.differenzInTagen(o);
 	}
 
 
 	public int getJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.YEAR);
 	}
 
 
 	public int getMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.MONTH);
 	}
 
 
 	public int getTagImJahr() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.DAY_OF_YEAR);
 	}
 
 
 	public int getTagImMonat() {
-		// TODO Auto-generated method stub
-		return 0;
+		return intern.get(Calendar.DAY_OF_MONTH);
 	}
 
 
 	public long differenzInTagen(Tag other) {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getTagImJahr() - other.getTagImJahr();
 	}
 
 
 	public Calendar inBasis() {
-		// TODO Auto-generated method stub
-		return null;
+		return (Calendar) intern.clone();
 	}
 
 }

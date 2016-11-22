@@ -3,7 +3,7 @@ package kalender.marco;
 import java.util.Iterator;
 import java.util.Map;
 
-import kalender.TerminMitWiederholungImpl.WiederholungImpl;
+import kalender.WiederholungType;
 import kalender.interfaces.Datum;
 import kalender.interfaces.DatumsGroesse;
 import kalender.interfaces.Dauer;
@@ -21,7 +21,7 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 
  // TODO Konstruktorprobleme auflösen
 	public TerminMitWiederholungImpl(String beschreibung, Datum start, Dauer dauer, WiederholungType type, int anzahl,
-			int zyklus) {
+									 int zyklus) {
 	}
 
 	public TerminMitWiederholungImpl(String beschreibung, Datum start, Dauer dauer, Wiederholung wdh) {
