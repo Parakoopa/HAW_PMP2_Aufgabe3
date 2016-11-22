@@ -10,11 +10,25 @@ public class TagImpl implements Tag {
 	private Calendar intern; 
 	
 	public TagImpl(int jahr, int tagImJahr) {
+		intern = Calendar.getInstance();
+		intern.clear();
+		intern.set(Calendar.YEAR, jahr);
+		intern.set(Calendar.DAY_OF_YEAR, tagImJahr);
+
 	}
 	public TagImpl(int jahr, int monat, int tagImMonat) {
+		intern = Calendar.getInstance();
+		intern.clear();
+		intern.set(Calendar.YEAR, jahr);
+		intern.set(Calendar.MONTH, monat);
+		intern.set(Calendar.DAY_OF_MONTH, tagImMonat);
+
 	}
 	
-	public TagImpl(Tag tag) {
+	public TagImpl(Tag tag) { //not getting this one
+		intern = Calendar.getInstance();
+		intern.clear();
+		intern.set(Calendar.DAY_OF_YEAR, tag);
 	}
 
 
@@ -35,7 +49,7 @@ public class TagImpl implements Tag {
 	}
 
 
-	public int compareTo(Datum o) {return this.compareTo(o);}
+	public int compareTo(Tag o) {return (int)this.differenzInTagen(o);}
 
 
 	public int getJahr() {

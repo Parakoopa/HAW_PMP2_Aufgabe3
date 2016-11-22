@@ -27,7 +27,7 @@ public class UhrzeitImpl implements Uhrzeit {
 
 
 	public int compareTo(Uhrzeit o) {
-		return this.intern.get(Calendar.AM_PM).compareTo(o);
+		return (getStunde()*60 + getMinuten()) - (o.getStunde()*60 + o.getMinuten());
 	}
 
 

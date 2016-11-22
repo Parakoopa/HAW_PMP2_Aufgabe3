@@ -22,7 +22,7 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
  // TODO Konstruktorprobleme auflösen
 	public TerminMitWiederholungImpl(Termin termin, WiederholungType type, int anzahl, int zyklus) { //String beschreibung, Datum start, Dauer dauer,
 		this.wdh.sub(anzahl);
-		this.wdh.anzahl()
+		this.wdh.anzahl();
 	}
 
 	public TerminMitWiederholungImpl(Termin termin, Wiederholung wdh) { //String beschreibung, Datum start, Dauer dauer,
@@ -32,7 +32,7 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 	
 	public Wiederholung getWdh() {
 
-		return this.wdh.();
+		return this.wdh;
 	}
 
 
