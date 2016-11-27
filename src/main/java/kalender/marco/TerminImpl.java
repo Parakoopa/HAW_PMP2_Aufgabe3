@@ -76,4 +76,34 @@ public class TerminImpl implements Termin {
 		return returnMap;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		TerminImpl termin = (TerminImpl) o;
+
+		if (beschreibung != null ? !beschreibung.equals(termin.beschreibung) : termin.beschreibung != null)
+			return false;
+		if (datum != null ? !datum.equals(termin.datum) : termin.datum != null) return false;
+		return dauer != null ? dauer.equals(termin.dauer) : termin.dauer == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		int result = beschreibung != null ? beschreibung.hashCode() : 0;
+		result = 31 * result + (datum != null ? datum.hashCode() : 0);
+		result = 31 * result + (dauer != null ? dauer.hashCode() : 0);
+		return result;
+	}
+
+	@Override
+	public String toString() {
+		return "TerminImpl{" +
+				"beschreibung='" + beschreibung + '\'' +
+				", datum=" + datum +
+				", dauer=" + dauer +
+				'}';
+	}
 }

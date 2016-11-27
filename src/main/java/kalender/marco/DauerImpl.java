@@ -78,4 +78,26 @@ public class DauerImpl implements Dauer {
 		return 0;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		DauerImpl dauer = (DauerImpl) o;
+
+		return minuten == dauer.minuten;
+
+	}
+
+	@Override
+	public int hashCode() {
+		return minuten;
+	}
+
+	@Override
+	public String toString() {
+		return "DauerImpl{" +
+				"minuten=" + minuten +
+				'}';
+	}
 }

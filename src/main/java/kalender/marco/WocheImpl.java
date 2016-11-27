@@ -61,4 +61,19 @@ public class WocheImpl implements Woche {
 				getJahr());
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		WocheImpl woche = (WocheImpl) o;
+
+		return intern != null ? intern.equals(woche.intern) : woche.intern == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		return intern != null ? intern.hashCode() : 0;
+	}
 }

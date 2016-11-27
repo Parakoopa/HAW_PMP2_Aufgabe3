@@ -40,6 +40,7 @@ public class TagImpl implements Tag {
 	public Datum getEnde() {
 		Calendar copy = (Calendar) intern.clone();
 		copy.set(Calendar.HOUR_OF_DAY, copy.getActualMaximum(Calendar.HOUR_OF_DAY));
+		copy.set(Calendar.MINUTE, copy.getActualMaximum(Calendar.MINUTE));
 		return new DatumImpl(
 				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
 				new UhrzeitImpl(copy.get(Calendar.HOUR_OF_DAY),copy.get(Calendar.MINUTE)));
@@ -72,7 +73,7 @@ public class TagImpl implements Tag {
 
 
 	public long differenzInTagen(Tag other) {
-		return this.getTagImJahr() - other.getTagImJahr();
+		return (long) ((intern.getTimeInMillis() - other.inBasis().getTimeInMillis()) * 0.001 / 60 / 60 / 24);
 	}
 
 
@@ -80,4 +81,19 @@ public class TagImpl implements Tag {
 		return (Calendar) intern.clone();
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		TagImpl tag = (TagImpl) o;
+
+		return intern != null ? intern.equals(tag.intern) : tag.intern == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		return intern != null ? intern.hashCode() : 0;
+	}
 }

@@ -51,10 +51,7 @@ public class TerminKalenderImpl implements TerminKalender {
 		return termine
 				.stream()
 				.flatMap(termin -> termin.termineAn(tag).values().stream())
-				.collect(Collectors.groupingBy(
-						Termin::getDatum,
-						Collectors.toList()
-				));
+				.collect(Collectors.groupingBy(Termin::getDatum));
 	}
 
 

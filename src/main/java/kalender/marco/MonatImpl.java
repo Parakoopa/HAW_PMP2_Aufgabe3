@@ -3,11 +3,7 @@ package kalender.marco;
 import java.util.Calendar;
 
 import kalender.interfaces.Datum;
-import kalender.interfaces.Dauer;
 import kalender.interfaces.Monat;
-import kalender.interfaces.Tag;
-import kalender.interfaces.Uhrzeit;
-import kalender.interfaces.Woche;
 
 public class MonatImpl implements Monat {
 
@@ -46,4 +42,19 @@ public class MonatImpl implements Monat {
 		return intern.get(Calendar.YEAR);
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		MonatImpl monat = (MonatImpl) o;
+
+		return intern != null ? intern.equals(monat.intern) : monat.intern == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		return intern != null ? intern.hashCode() : 0;
+	}
 }
