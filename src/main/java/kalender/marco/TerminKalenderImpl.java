@@ -33,7 +33,11 @@ public class TerminKalenderImpl implements TerminKalender {
 
 
 	public void verschiebenAuf(Termin termin, Datum datum) {
-		termin.verschiebeAuf(datum);
+		// Versuchen den Termin aus der Liste zu verschieben (bei Fehlschlag NPE)
+		//terminelist.get(terminelist.indexOf(termin)).verschiebeAuf(datum);
+		termine.set(termine.indexOf(termin), termin.verschiebeAuf(datum));
+		// oder einfach stumpf den Termin verschieben:
+		// termin.verschiebeAuf(datum);
 	}
 
 
