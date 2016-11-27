@@ -68,15 +68,15 @@ public class MonatImplTest {
     @Test
     public void getEnde() {
         assertEquals(
-                new DatumStub(2016, 29, 1),
+                new DatumStub(2016, 29, 1, 23, 59),
                 this.testMonat.getEnde()
         );
         assertEquals(
-                new DatumStub(2016, 30, 3),
+                new DatumStub(2016, 30, 3, 23, 59),
                 this.andererMonat.getEnde()
         );
         assertEquals(
-                new DatumStub(2013, 28, 1),
+                new DatumStub(2013, 28, 1, 23, 59),
                 this.anderesJahr.getEnde()
         );
     }

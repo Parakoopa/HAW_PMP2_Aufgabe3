@@ -29,7 +29,9 @@ public class MonatImpl implements Monat {
 		Calendar copy = (Calendar) intern.clone();
 		copy.set(Calendar.DAY_OF_MONTH, copy.getActualMaximum(Calendar.DAY_OF_MONTH));
 		return new DatumImpl(
-				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)));
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
+				new UhrzeitImpl(23, 59)
+		);
 	}
 
 
