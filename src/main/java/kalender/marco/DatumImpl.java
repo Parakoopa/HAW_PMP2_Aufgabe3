@@ -94,29 +94,13 @@ public class DatumImpl implements Datum {
 
 
 	public Datum add(Dauer dauer) {
-		int stundeVorher = getUhrzeit().getStunde();
 		intern.add(Calendar.MINUTE, dauer.inMinuten());
-		// Zeitumstellung muss beachtet werden, damit Wiederholungen korrekt arbeiten.
-		// Es wird nur einfache deutsche Zeitumstellung ausgeglichen.
-		if (getUhrzeit().getStunde() == stundeVorher + 1) {
-			intern.add(Calendar.MINUTE, -60);
-		} else if (getUhrzeit().getStunde() == stundeVorher - 1) {
-			intern.add(Calendar.MINUTE, 60);
-		}
 		return new DatumImpl(this);
 	}
 
 
 	public Datum sub(Dauer dauer) {
-		int stundeVorher = getUhrzeit().getStunde();
 		intern.add(Calendar.MINUTE, -dauer.inMinuten());
-		// Zeitumstellung muss beachtet werden, damit Wiederholungen korrekt arbeiten.
-		// Es wird nur einfache deutsche Zeitumstellung ausgeglichen.
-		if (getUhrzeit().getStunde() == stundeVorher + 1) {
-			intern.add(Calendar.MINUTE, -60);
-		} else if (getUhrzeit().getStunde() == stundeVorher - 1) {
-			intern.add(Calendar.MINUTE, 60);
-		}
 		return new DatumImpl(this);
 	}
 
