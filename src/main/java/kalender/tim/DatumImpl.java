@@ -43,17 +43,16 @@ public class DatumImpl implements Datum {
 
 
 	public Tag getTag() {
-		Tag tag = new Tag(this.intern.get(Calendar.DAY_OF_YEAR));
-		return tag;
+		return new TagImpl(this.getTagImJahr(), this.getWocheImJahr(), this.getMonatImJahr());
 	}
 	public Woche getWoche() {
-		Woche woche = new Woche(this.intern.get(Calendar.WEEK_OF_YEAR));
+		return new WocheImpl(getTagImJahr(), getMonatImJahr(), getTagImMonat());
 	}
 	public Monat getMonat() {
-		Monat monat = new Monat(this.intern.get(Calendar.MONTH));
+		return new MonatImpl(getMonatImJahr(), getTagImMonat());
 	}
 	public Uhrzeit getUhrzeit() {
-		Uhrzeit uhrzeit = new Uhrzeit(this.intern.get(Calendar.AM_PM));
+		return new UhrzeitImpl(this.intern.get(Calendar.HOUR_OF_DAY), this.intern.get(Calendar.MINUTE));
 	}
 
 	public int getJahr() {return this.intern.get(Calendar.YEAR);}
@@ -65,8 +64,8 @@ public class DatumImpl implements Datum {
 
 
 	public Datum add(Dauer dauer) {
-
-		return new Datum (this.inBasis() + dauer.());
+		this.intern.add(Calendar.MINUTE,dauer.inMinuten());
+		return  new DatumImpl(this);
 
 	}
 	public Datum sub(Dauer dauer) {return this.sub(dauer);}

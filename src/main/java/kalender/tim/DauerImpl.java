@@ -66,7 +66,18 @@ public class DauerImpl implements Dauer {
 
 
 	public int anteilWochen() {
-		return this.inTagen()%30; //somehow get real month lenghts
+		return this.inTagen()%54; //somehow get real month lenghts
 	}
 
+	@Override
+	public boolean equals(Object other) {
+		if (this == other) {
+			return true;
+		}
+		if (other == null || this.getClass() != other.getClass()) {
+			return false;
+		}
+		DauerImpl otherDauer = (DauerImpl) other;
+		return minuten == otherDauer.minuten;
+	}
 }

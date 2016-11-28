@@ -234,6 +234,28 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 				return (int) div;
 			return naechstesIntervall(dat) - 1;
 		}
+		@Override
+		public int hashCode() {
+			return this.anzahl() * this.cycle;
+		}
+
+		@Override
+		public boolean equals( Object other) { //Object, da Implementierung der Superklasse Object
+			if(this == other){ return true;}
+			if(this.getClass() != null && this.getClass() != other.getClass()) {
+				return false;
+			}
+			WiederholungImpl otherWiederholung = (WiederholungImpl) other; // impl overwrites
+			if(this.anzahl() != otherWiederholung.anzahl() || this.cycle != otherWiederholung.getZyklus()) { //equals in Wiederholung angebrachter?
+				return false;
+			}
+			return this.wdhType == otherWiederholung.wdhType;
+		}
+
+		@Override
+		public String toString() {
+			return"wdhType=" + wdhType + ", anzahl=" + anzahl + ", cycle=" + cycle;
+		}
 
 		/*
 		 * @see kalender.interfaces.Wiederholung#naechstesDatum()
