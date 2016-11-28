@@ -24,12 +24,10 @@ public class TagImpl implements Tag {
 		intern.set(Calendar.DAY_OF_MONTH, tagImMonat);
 
 	}
-	
-	public TagImpl(Tag tag) { //not getting this one
-		intern = Calendar.getInstance();
-		intern.clear();
-		intern.set(Calendar.DAY_OF_YEAR, tag);
-	}
+
+	public TagImpl(Tag tag) {
+		this(tag.getJahr(), tag.getTagImJahr());
+	} //but why?
 
 
 	public Datum getStart() {

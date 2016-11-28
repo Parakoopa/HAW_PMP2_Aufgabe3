@@ -2,6 +2,7 @@ package kalender.tim;
 
 import java.util.Iterator;
 import java.util.Map;
+import java.util.HashMap;
 
 import kalender.WiederholungType;
 import kalender.interfaces.Datum;
@@ -19,39 +20,38 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 
 	private Wiederholung wdh;
 
- // TODO Konstruktorprobleme auflösen
-	public TerminMitWiederholungImpl(Termin termin, WiederholungType type, int anzahl, int zyklus) { //String beschreibung, Datum start, Dauer dauer,
-		this.wdh.sub(anzahl);
-		this.wdh.anzahl();
+	public TerminMitWiederholungImpl(String beschreibung, Datum start, Dauer dauer, WiederholungType type, int anzahl,
+									 int zyklus) {
+		super(beschreibung, start, dauer);
+		this.wdh = new WiederholungImpl(type, anzahl, zyklus);
 	}
 
-	public TerminMitWiederholungImpl(Termin termin, Wiederholung wdh) { //String beschreibung, Datum start, Dauer dauer,
-
+	public TerminMitWiederholungImpl(String beschreibung, Datum start, Dauer dauer, Wiederholung wdh) {
+		super(beschreibung, start, dauer);
+		this.wdh = wdh;
 	}
+
 	
 	
 	public Wiederholung getWdh() {
-
 		return this.wdh;
 	}
 
 
 
 	public Map<Datum, Termin> termineIn(Monat monat) {
-		// TODO auf termineFuer zurückführen
-		return null;
+		return  termineFuer(monat);
+
 	}
 
 
 	public Map<Datum, Termin> termineIn(Woche woche) {
-		// TODO auf termineFuer zurückführen
-		return null;
+		return  termineFuer(woche);
 	}
 
 
 	public Map<Datum, Termin> termineAn(Tag tag) {
-		// TODO auf termineFuer zurückführen
-		return null;
+		return  termineFuer(tag);
 	}
 
 	
@@ -86,19 +86,17 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 
 
 	public IntervallIterator<Datum> intervallIterator(int von, int bis) {
-		return new IntervallIterator<Datum>() {
-			// TODO end Index als upper bound merken / cursor initialisieren
-			
+			return new IntervallIterator<Datum>() {
 
-			public boolean hasNext() {
-				// TODO in Abhängigkeit von cursor und upper bound (upper bound ist inkl.)
-				return false;
-			}
-
+				public boolean hasNext() {
+					if(von <= bis) {
+						return (von < TerminMitWiederholungImpl.this.getWdh().maxIntervallIndex());
+					}
+					return false;
+				}
 
 			public Datum next() {
-				// TODO nächstes Element mit geeigneter Methode von Wiederholung berechnen
-				return null;
+				return TerminMitWiederholungImpl.this.getWdh().naechstesDatum(von);
 			}
 
 		};
@@ -107,9 +105,12 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 
 
 	public Map<Datum, Termin> termineFuer(DatumsGroesse groesse) {
-		// TODO Indizes fuer Start und End Intervall berechnen
-		
-		// TODO Indizes auf Gültigkeit prüfen
+		int start = this.getWdh().naechstesIntervall(groesse.getStart());
+		int end = this.getWdh().naechstesIntervall(groesse.getEnde());
+
+		if(end < getWdh().maxIntervallIndex()) {
+			end = getWdh().maxIntervallIndex();
+		}
 		// wenn endIndex > maxIntervallIndex dann setze endIndex auf
 		// maxIntervallIndex
 		//
@@ -118,10 +119,27 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		// gib null zurück
 
 		// 
-		// TODO hier den Intervalliterator nutzen 
+		if(start > end || start < 0 || end < 0) {
+			return null;
+		}
 		// Map erzeugen und die Wiederholungen einsammeln
-		
-		return null;
+		Map<Datum, Termin> tempMap = new HashMap<Datum, Termin>();
+		Wiederholung wiederholung;
+		TerminMitWiederholung terminMitWiederholung = this;
+		IntervallIterator<Datum> intervallIterator = intervallIterator(start, end);
+
+		while(intervallIterator.hasNext()) {
+			Datum datum = intervallIterator.next();
+			if(this == terminMitWiederholung) {
+				wiederholung = this.getWdh().sub(start);//Sprung zum nächstfrühestmöglichen Termin
+			}
+			else {
+				wiederholung = this.getWdh().sub(1); //Sprung zum nächstfrühesten Termin
+			}
+			terminMitWiederholung = new TerminMitWiederholungImpl(getBeschreibung(), datum, getDauer(),wiederholung);
+			tempMap.put(datum, terminMitWiederholung);
+		}
+		return tempMap;
 	}
 
 	public class WiederholungImpl implements Wiederholung {
