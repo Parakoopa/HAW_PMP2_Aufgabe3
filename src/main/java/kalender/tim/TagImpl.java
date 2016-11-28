@@ -32,18 +32,21 @@ public class TagImpl implements Tag {
 
 	public Datum getStart() {
 		Calendar copy = (Calendar) intern.clone();
-		copy.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		copy.set(Calendar.HOUR_OF_DAY, 0);
+		copy.set(Calendar.MINUTE, 0);
 		return new DatumImpl(
-				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)));
+				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
+				new UhrzeitImpl(copy.get(Calendar.HOUR_OF_DAY),copy.get(Calendar.MINUTE)));
 
 	}
 
 	public Datum getEnde() {
 		Calendar copy = (Calendar) intern.clone();
-		copy.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		copy.set(Calendar.HOUR_OF_DAY, copy.getActualMaximum(Calendar.HOUR_OF_DAY));
+		copy.set(Calendar.MINUTE, copy.getActualMaximum(Calendar.MINUTE));
 		return new DatumImpl(
 				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
-				new UhrzeitImpl(23, 59));
+				new UhrzeitImpl(copy.get(Calendar.HOUR_OF_DAY),copy.get(Calendar.MINUTE)));
 	}
 
 
@@ -71,10 +74,8 @@ public class TagImpl implements Tag {
 
 
 	public long differenzInTagen(Tag other) {
-		Calendar otherCalendar  = Calendar.getInstance();
-		otherCalendar.clear();
-		intern.set(Calendar.DAY_OF_YEAR, other.getTagImJahr()); //too complicated?
-		return this.intern.getTimeInMillis() - otherCalendar.getTimeInMillis();
+		Calendar otherCalendar = other.inBasis();
+		return (long) ((this.intern.getTimeInMillis() - otherCalendar.getTimeInMillis()) * 0.001 / 60 / 60 / 24);
 	}
 
 

@@ -32,7 +32,7 @@ public class UhrzeitImpl implements Uhrzeit {
 
 
 	public int getStunde() {
-		return this.intern.get(Calendar.HOUR);
+		return this.intern.get(Calendar.HOUR_OF_DAY);
 	}
 
 

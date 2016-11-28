@@ -85,4 +85,20 @@ public class DatumImpl implements Datum {
 		return copy;
 	}
 
+	@Override
+	public boolean equals(Object o) {
+		if (this == o) return true;
+		if (o == null || getClass() != o.getClass()) return false;
+
+		DatumImpl datum = (DatumImpl) o;
+
+		return intern != null ? intern.equals(datum.intern) : datum.intern == null;
+
+	}
+
+	@Override
+	public int hashCode() {
+		return intern != null ? intern.hashCode() : 0;
+	}
+
 }
