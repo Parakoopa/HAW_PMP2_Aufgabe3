@@ -31,6 +31,7 @@ public class TagImpl implements Tag {
 	public Datum getStart() {
 		Calendar copy = (Calendar) intern.clone();
 		copy.set(Calendar.HOUR_OF_DAY, 0);
+		copy.set(Calendar.MINUTE, 0);
 		return new DatumImpl(
 				new TagImpl(copy.get(Calendar.YEAR), copy.get(Calendar.MONTH), copy.get(Calendar.DAY_OF_MONTH)),
 				new UhrzeitImpl(copy.get(Calendar.HOUR_OF_DAY),copy.get(Calendar.MINUTE)));
