@@ -5,6 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+
 import kalender.interfaces.Datum;
 import kalender.interfaces.Monat;
 import kalender.interfaces.Tag;
@@ -12,8 +19,31 @@ import kalender.interfaces.Termin;
 import kalender.interfaces.TerminKalender;
 import kalender.interfaces.Woche;
 
-public class TerminKalenderImpl implements TerminKalender {
-	private List<Termin> kalender = new ArrayList<Termin>();
+public class TerminKalenderImpl extends Application implements TerminKalender {
+
+        Button button;
+
+        public static void TerminKalenderImpl(String[] args) {
+            launch(args);
+        }
+
+        @Override
+        public void start(Stage primaryStage) throws Exception {
+            primaryStage.setTitle("Title of the Window");
+            button = new Button("Click me");
+            button.setText("click me");
+
+            StackPane layout = new StackPane();
+            layout.getChildren().add(button);
+
+            Scene scene = new Scene(layout, 300, 250);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }
+
+
+
+    private List<Termin> kalender = new ArrayList<Termin>();
 
 	public boolean eintragen(Termin termin) {
 	    try {
