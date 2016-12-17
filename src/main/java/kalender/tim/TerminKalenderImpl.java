@@ -86,12 +86,11 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
     Button monatsAnsicht = new Button("Monatsansicht anzeigen");
     Button tagesAnsicht = new Button("Tagesansicht anzeigen");
 
-    TableView<Termin> terminTabelle;
+    TableView<TerminImpl> terminTabelle;
     TableView monatsTabelle = new TableView();
     TableView tagesTabelle = new TableView();
 
     public  void TerminKalenderImpl(String[] args) { //static?
-        setUp();
         launch(args);
     }
 
@@ -99,17 +98,28 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        setUp();
         window = primaryStage;
         window.setTitle("Tabellenauswahl");
 
         //dateColumn
-        TableColumn<Termin,String> dateColumn = new TableColumn<>("Datum");
+        TableColumn<TerminImpl,String> dateColumn = new TableColumn<>("Datum");
         dateColumn.setMinWidth(200);
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("datum"));
 
+        //nameColumn
+        TableColumn<TerminImpl,String> nameColumn = new TableColumn<>("Name");
+        dateColumn.setMinWidth(200);
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("bescheibung"));
+
+        //durationColumn
+        TableColumn<TerminImpl,String> durationColumn = new TableColumn<>("Dauer");
+        dateColumn.setMinWidth(200);
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("dauer"));
+
         terminTabelle = new TableView<>();
         terminTabelle.setItems(getTermin());
-        terminTabelle.getColumns().addAll(dateColumn);
+        terminTabelle.getColumns().addAll(dateColumn, nameColumn, durationColumn);
 
 
         VBox vBox = new VBox();
@@ -128,8 +138,8 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
     }
 
-    public ObservableList<Termin> getTermin() {
-        ObservableList<Termin> termine = FXCollections.observableArrayList();
+    public ObservableList<TerminImpl> getTermin() {
+        ObservableList<TerminImpl> termine = FXCollections.observableArrayList();
         termine.add(terminA);
         termine.add(terminA2);
         termine.add(terminB);
