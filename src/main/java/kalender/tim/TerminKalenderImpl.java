@@ -82,7 +82,7 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
     Button button_to_MonatAnsicht = new Button("Monatsansicht anzeigen");
     Button button_to_TagesAnsicht = new Button("Tagesansicht anzeigen");
 
-    TableView<TerminImpl> terminTabelle;
+    TableView<TerminImpl> terminTabelle, datumsTabelle;
     TableView monatsTabelle = new TableView();
     TableView tagesTabelle = new TableView();
 
@@ -103,6 +103,11 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
         dateColumn.setMinWidth(200);
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("datum"));
 
+        datumsTabelle = new TableView<>();
+        datumsTabelle.setItems(getTermin());
+        datumsTabelle.getColumns().addAll(dateColumn);
+
+
         //nameColumn
         TableColumn<TerminImpl,String> nameColumn = new TableColumn<>("Name");
         dateColumn.setMinWidth(200);
@@ -115,11 +120,10 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
         terminTabelle = new TableView<>();
         terminTabelle.setItems(getTermin());
-        terminTabelle.getColumns().addAll(dateColumn, nameColumn, durationColumn);
-
+        terminTabelle.getColumns().addAll(nameColumn, durationColumn);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(terminTabelle);
+        vBox.getChildren().addAll(datumsTabelle,terminTabelle);
 
         StackPane layout = new StackPane();
         layout.getChildren().add(button_to_MonatAnsicht);
