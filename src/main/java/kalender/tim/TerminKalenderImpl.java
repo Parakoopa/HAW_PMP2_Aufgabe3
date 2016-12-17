@@ -81,7 +81,7 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
     //GUI ERSTELLEN
 
-    Stage primaryStage;
+    Stage window;
 
     Button monatsAnsicht = new Button("Monatsansicht anzeigen");
     Button tagesAnsicht = new Button("Tagesansicht anzeigen");
@@ -99,8 +99,8 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.primaryStage = primaryStage;
-        primaryStage.setTitle("Tabellenauswahl");
+        window = primaryStage;
+        window.setTitle("Tabellenauswahl");
 
         //dateColumn
         TableColumn<Termin,String> dateColumn = new TableColumn<>("Datum");
@@ -116,13 +116,13 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
         vBox.getChildren().addAll(terminTabelle);
 
 
-        StackPane layout = new StackPane();
+   //     StackPane layout = new StackPane();
    //     layout.getChildren().add(monatsAnsicht);
    //     layout.getChildren().add(tagesAnsicht);
-
-        Scene scene = new Scene(layout, 300, 250);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+   //    Scene scene = new Scene(layout, 300, 250);
+        Scene scene = new Scene(vBox);
+        window.setScene(scene);
+        window.show();
 
         monatsAnsicht.setOnAction(e -> System.out.println("monatsAnsicht();"));
 
