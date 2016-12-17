@@ -74,17 +74,13 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
 
 
-
-
-
-
-
     //GUI ERSTELLEN
 
     Stage window;
+    Scene selectionScene, monatsAnsicht, tagesAnsicht;
 
-    Button displayMonatsAnsicht = new Button("Monatsansicht anzeigen");
-    Button displayTagesAnsicht = new Button("Tagesansicht anzeigen");
+    Button button_to_MonatAnsicht = new Button("Monatsansicht anzeigen");
+    Button button_to_TagesAnsicht = new Button("Tagesansicht anzeigen");
 
     TableView<TerminImpl> terminTabelle;
     TableView monatsTabelle = new TableView();
@@ -126,18 +122,17 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
         vBox.getChildren().addAll(terminTabelle);
 
         StackPane layout = new StackPane();
-        layout.getChildren().add(displayMonatsAnsicht);
-   //     layout.getChildren().add(displayTagesAnsicht);
+        layout.getChildren().add(button_to_MonatAnsicht);
+   //     layout.getChildren().add(button_to_TagesAnsicht);
 
-        Scene monatsAnsicht = new Scene(layout, 300, 250);
-        Scene terminTabelle = new Scene(vBox);
-
-        window.setScene(monatsAnsicht);
-     //   window.setScene(terminTabelle);
+        selectionScene = new Scene(layout, 300, 250);
+        monatsAnsicht = new Scene(vBox);
+        //tagesAnsicht = new Scene(vBox);
+        window.setScene(selectionScene);
         window.show();
 
-        displayMonatsAnsicht.setOnAction(e -> displayMonatsansicht(terminTabelle));
-
+        button_to_MonatAnsicht.setOnAction(e -> window.setScene(monatsAnsicht));
+        //button_to_TagesAnsicht.setOnAction(e -> window.setScene(monatsAnsicht));
     }
 
     private ObservableList<TerminImpl> getTermin() {
@@ -152,8 +147,7 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
 
     //ToDo Monatsansicht
-    private void displayMonatsansicht(Scene terminTabelle) {
-        window.setScene(terminTabelle);
+    private void displayMonatsansicht() {
     }
 
     //Alle Tage des Montats Tabellarisch darstellen
