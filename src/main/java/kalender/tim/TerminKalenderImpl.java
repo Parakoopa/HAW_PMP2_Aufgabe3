@@ -83,8 +83,8 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
 
     Stage window;
 
-    Button monatsAnsicht = new Button("Monatsansicht anzeigen");
-    Button tagesAnsicht = new Button("Tagesansicht anzeigen");
+    Button displayMonatsAnsicht = new Button("Monatsansicht anzeigen");
+    Button displayTagesAnsicht = new Button("Tagesansicht anzeigen");
 
     TableView<TerminImpl> terminTabelle;
     TableView monatsTabelle = new TableView();
@@ -125,20 +125,22 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
         VBox vBox = new VBox();
         vBox.getChildren().addAll(terminTabelle);
 
+        StackPane layout = new StackPane();
+        layout.getChildren().add(displayMonatsAnsicht);
+   //     layout.getChildren().add(displayTagesAnsicht);
 
-   //     StackPane layout = new StackPane();
-   //     layout.getChildren().add(monatsAnsicht);
-   //     layout.getChildren().add(tagesAnsicht);
-   //    Scene scene = new Scene(layout, 300, 250);
-        Scene scene = new Scene(vBox);
-        window.setScene(scene);
+        Scene monatsAnsicht = new Scene(layout, 300, 250);
+        Scene terminTabelle = new Scene(vBox);
+
+        window.setScene(monatsAnsicht);
+     //   window.setScene(terminTabelle);
         window.show();
 
-        monatsAnsicht.setOnAction(e -> System.out.println("monatsAnsicht();"));
+        displayMonatsAnsicht.setOnAction(e -> displayMonatsansicht(terminTabelle));
 
     }
 
-    public ObservableList<TerminImpl> getTermin() {
+    private ObservableList<TerminImpl> getTermin() {
         ObservableList<TerminImpl> termine = FXCollections.observableArrayList();
         termine.add(terminA);
         termine.add(terminA2);
@@ -148,9 +150,10 @@ public class TerminKalenderImpl extends Application implements TerminKalender {
     }
 
 
-    //ToDo Monatsansicht
-    public void displayMonatsansicht() {
 
+    //ToDo Monatsansicht
+    private void displayMonatsansicht(Scene terminTabelle) {
+        window.setScene(terminTabelle);
     }
 
     //Alle Tage des Montats Tabellarisch darstellen
