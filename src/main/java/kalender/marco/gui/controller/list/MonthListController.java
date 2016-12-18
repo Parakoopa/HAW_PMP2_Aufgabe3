@@ -13,7 +13,6 @@ import kalender.TagImpl;
 import kalender.interfaces.Datum;
 import kalender.interfaces.Monat;
 import kalender.interfaces.Tag;
-import kalender.marco.gui.controller.DatumEintrag;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

@@ -6,8 +6,10 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import kalender.interfaces.TerminKalender;
+import kalender.marco.gui.controller.list.DatumEintrag;
 import kalender.marco.gui.controller.list.DayListController;
 import kalender.marco.gui.controller.list.MonthListController;
+import kalender.marco.gui.controller.list.TerminEintrag;
 
 /**
  * Haupt-Klasse des Controllers für die GUI Anwendung.

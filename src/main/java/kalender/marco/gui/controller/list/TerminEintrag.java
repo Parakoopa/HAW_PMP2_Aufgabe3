@@ -1,4 +1,4 @@
-package kalender.marco.gui.controller;
+package kalender.marco.gui.controller.list;
 
 import kalender.interfaces.Datum;
 import kalender.interfaces.Termin;

@@ -11,12 +11,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import kalender.TagImpl;
 import kalender.interfaces.Datum;
 import kalender.interfaces.Tag;
 import kalender.interfaces.Termin;
 import kalender.interfaces.TerminKalender;
-import kalender.marco.gui.controller.TerminEintrag;
 
 import java.time.LocalDate;
 import java.util.List;
