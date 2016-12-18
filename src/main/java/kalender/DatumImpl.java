@@ -142,6 +142,6 @@ public class DatumImpl implements Datum {
 
 	@Override
 	public String toString() {
-		return "Datum{"+getTagImMonat()+"."+(getMonatImJahr()+1)+"."+getJahr()+" "+getUhrzeit().getStunde()+":"+getUhrzeit().getMinuten()+"}";
+		return ""+getTagImMonat()+"."+(getMonatImJahr()+1)+"."+getJahr()+" "+getUhrzeit().getStunde()+":"+getUhrzeit().getMinuten()+" Uhr";
 	}
 }

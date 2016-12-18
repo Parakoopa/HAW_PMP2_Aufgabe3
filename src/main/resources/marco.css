@@ -1,0 +1,9 @@
+.tc-today .text {
+    -fx-fill: red;
+}
+.tc-events .text {
+    -fx-fill: blue;
+}
+.tc-events.tc-today .text {
+    -fx-fill: magenta;
+}
