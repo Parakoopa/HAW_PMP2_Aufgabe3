@@ -131,7 +131,15 @@ public abstract class AbstractListController {
                 kalender.terminLoeschen(terminE.getTermin());
             }
             eventsTable.getItems().removeAll(selectedItems);
+            onEventsWereDeleted();
         }
+    }
+
+    /**
+     * Wird aufgerufen, wenn Termine gelöscht wurden.
+     */
+    protected void onEventsWereDeleted() {
+        // Optional callback.
     }
 
     /**

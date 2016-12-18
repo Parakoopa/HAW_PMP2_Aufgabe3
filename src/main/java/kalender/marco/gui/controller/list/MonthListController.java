@@ -133,4 +133,19 @@ public class MonthListController extends AbstractListController {
         }
         dateTable.setItems(obsList);
     }
+
+    /**
+     * Wird aufgerufen, wenn Termine gelöscht wurden.
+     * - Aktualisere Tage in der Datums-Liste
+     */
+    @Override
+    protected void onEventsWereDeleted() {
+        super.onEventsWereDeleted();
+        dateTable.getColumns().forEach(c -> {
+            // Hack der dafür sorgt, dass die Tabellen-Zeilen neu gerendert werden,
+            // damit die Farben aktualisiert werden.
+            c.setVisible(false);
+            c.setVisible(true);
+        });
+    }
 }
