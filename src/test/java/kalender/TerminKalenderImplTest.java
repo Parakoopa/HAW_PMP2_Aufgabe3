@@ -3,7 +3,6 @@ package kalender;
 import kalender.interfaces.Datum;
 import kalender.interfaces.Termin;
 import kalender.interfaces.TerminKalender;
-import kalender.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -124,9 +123,9 @@ public class TerminKalenderImplTest {
         List<Termin> listeAmTagB = new ArrayList<>();
         listeAmTagB.add(new TerminMitWiederholungImpl("TestC",
                 new DatumImpl(
-                        new TagImpl(2016, 5, 1),
+                        new TagImpl(2016, 4, 1),
                         new UhrzeitImpl(12, 10)
-                ), new DauerImpl(20), WiederholungType.TAEGLICH, 9969, 1
+                ), new DauerImpl(20), WiederholungType.TAEGLICH, 10000, 1
         ));
 
         listeFuerTermineAmTag.put(new DatumImpl(
@@ -177,9 +176,9 @@ public class TerminKalenderImplTest {
             ArrayList<Termin> tmp = new ArrayList<>();
             tmp.add(new TerminMitWiederholungImpl("TestC",
                     new DatumImpl(
-                            new TagImpl(2016, 4, i),
+                            new TagImpl(2016, 4, 1),
                             new UhrzeitImpl(12, 10)
-                    ), new DauerImpl(20), WiederholungType.TAEGLICH, 10001-i, 1
+                    ), new DauerImpl(20), WiederholungType.TAEGLICH, 10000, 1
             ));
             termineFuerWoche.put(new DatumImpl(
                     new TagImpl(2016, 4, i),
@@ -190,9 +189,9 @@ public class TerminKalenderImplTest {
             ArrayList<Termin> tmp = new ArrayList<>();
             tmp.add(new TerminMitWiederholungImpl("TestC",
                     new DatumImpl(
-                            new TagImpl(2016, 5, i),
+                            new TagImpl(2016, 4, 1),
                             new UhrzeitImpl(12, 10)
-                    ), new DauerImpl(20), WiederholungType.TAEGLICH, 9970-i, 1
+                    ), new DauerImpl(20), WiederholungType.TAEGLICH, 10000, 1
             ));
             termineFuerWoche.put(new DatumImpl(
                     new TagImpl(2016, 5, i),
@@ -232,9 +231,9 @@ public class TerminKalenderImplTest {
             ArrayList<Termin> tmp = new ArrayList<>();
             tmp.add(new TerminMitWiederholungImpl("TestC",
                     new DatumImpl(
-                            new TagImpl(2016, 4, i),
+                            new TagImpl(2016, 4, 1),
                             new UhrzeitImpl(12, 10)
-                    ), new DauerImpl(20), WiederholungType.TAEGLICH, 10001-i, 1
+                    ), new DauerImpl(20), WiederholungType.TAEGLICH, 10000, 1
             ));
             listeFuerTermineImMonat.put(new DatumImpl(
                     new TagImpl(2016, 4, i),
