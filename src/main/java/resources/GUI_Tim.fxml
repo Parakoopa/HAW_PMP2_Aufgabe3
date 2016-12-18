@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -10,13 +11,13 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
   <tabs>
-    <Tab fx:id="monatsansicht" text="Monatsansicht">
+    <Tab fx:id="monatsansicht_TableView" text="Monatsansicht">
          <content>
             <SplitPane dividerPositions="0.5" orientation="VERTICAL" prefHeight="240.0" prefWidth="600.0">
                <items>
                   <Pane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <TableView prefHeight="183.0" prefWidth="600.0">
+                        <TableView fx:id="monatsansicht_Tableview" prefHeight="183.0" prefWidth="600.0">
                           <columns>
                             <TableColumn fx:id="monatsansicht_Tab_Datum" prefWidth="75.0" text="Datum" />
                           </columns>
@@ -25,7 +26,7 @@
                   </Pane>
                   <TitledPane fx:id="tagesAnsicht_Tab" animated="false" text="Tagesansicht">
                      <content>
-                        <TableView prefHeight="255.0" prefWidth="600.0">
+                        <TableView fx:id="tagesAnsicht_Tableview" prefHeight="255.0" prefWidth="600.0">
                            <columns>
                               <TableColumn fx:id="tagesAnsicht_Tab_Datum" prefWidth="75.0" text="Datum" />
                               <TableColumn fx:id="tagesAnsicht_Tab_Beschreibung" prefWidth="158.0" text="Beschreibung" />
@@ -36,19 +37,9 @@
                </items>
             </SplitPane>
          </content>
-    </Tab>
-    <Tab fx:id="tagesAnsicht" text="Tageasansicht">
-         <content>
-            <Pane prefHeight="200.0" prefWidth="200.0">
-               <children>
-                  <TableView prefHeight="373.0" prefWidth="600.0">
-                     <columns>
-                        <TableColumn fx:id="monatsansicht_Tab_Datum1" prefWidth="75.0" text="Datum" />
-                     </columns>
-                  </TableView>
-               </children>
-            </Pane>
-         </content>
+         <graphic>
+            <DatePicker />
+         </graphic>
     </Tab>
   </tabs>
 </TabPane>
