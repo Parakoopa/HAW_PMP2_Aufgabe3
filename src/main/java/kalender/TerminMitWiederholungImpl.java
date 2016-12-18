@@ -130,16 +130,9 @@ public class TerminMitWiederholungImpl extends TerminImpl implements TerminMitWi
 		TerminMitWiederholung current = this;
 		IntervallIterator<Datum> intervallIterator = intervallIterator(start, end);
 
-		while(intervallIterator.hasNext()) {
-			Datum datum = intervallIterator.next();
-			if(this == current) {
-				wiederholung = current.getWdh().sub(start);//Sprung zum nächstfrühestmöglichen Termin
-			}
-			else {
-				wiederholung = current.getWdh().sub(1); //Sprung zum nächstfrühesten Termin
-			}
-			current = new TerminMitWiederholungImpl(getBeschreibung(), datum, getDauer(),wiederholung);
-			tempMap.put(datum, current);
+		while (intervallIterator.hasNext()) {
+			Datum dt = intervallIterator.next();
+			tempMap.put(dt, this);
 		}
 		return tempMap;
 	}

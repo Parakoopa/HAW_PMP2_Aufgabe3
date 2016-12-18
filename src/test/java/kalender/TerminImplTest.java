@@ -2,14 +2,12 @@ package kalender;
 
 import kalender.interfaces.Datum;
 import kalender.interfaces.Termin;
-import kalender.TerminImpl;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertSame;
+import static org.junit.Assert.*;
 
 /**
  * Created by marco on 26.11.16.

@@ -1,15 +1,14 @@
 package kalender;
 
-import kalender.interfaces.Datum;
-import kalender.interfaces.Termin;
+import kalender.interfaces.*;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /**
  * Abhängig von den Datums/DauerKlassen und Wiederholung
@@ -39,9 +38,9 @@ public class TerminMitWiederholungImplTest {
             listeFuerTermineImMonatA.put(
                     new DatumImpl(new TagImpl(2016, 1, 1+2*i), new UhrzeitImpl(12, 0)),
                     new TerminMitWiederholungImpl("TerminA",
-                            new DatumImpl(new TagImpl(2016, 1, 1+2*i), new UhrzeitImpl(12, 0)),
+                            new DatumImpl(new TagImpl(2016, 1, 1), new UhrzeitImpl(12, 0)),
                             new DauerImpl(10),
-                            WiederholungType.TAEGLICH, 9-i, 2)
+                            WiederholungType.TAEGLICH, 9, 2)
             );
         }
 
@@ -50,9 +49,9 @@ public class TerminMitWiederholungImplTest {
             listeFuerTermineInWoche.put(
                     new DatumImpl(new TagImpl(2016, 1, 1+2*i), new UhrzeitImpl(12, 0)),
                     new TerminMitWiederholungImpl("TerminA",
-                            new DatumImpl(new TagImpl(2016, 1, 1+2*i), new UhrzeitImpl(12, 0)),
+                            new DatumImpl(new TagImpl(2016, 1, 1), new UhrzeitImpl(12, 0)),
                             new DauerImpl(10),
-                            WiederholungType.TAEGLICH, 9-i, 2)
+                            WiederholungType.TAEGLICH, 9, 2)
             );
         }
 
@@ -158,11 +157,11 @@ public class TerminMitWiederholungImplTest {
                         );
                     }
                     assertEquals(
-                        "Die von IntervallIterator zurückgebenenen Datums-Werte müssen dem Wiederholungs-Muster entsprechen\n" +
-                                "und den richtigen Bereich abdecken [EQUALS ABHÄNGIG!].\n" +
-                                "Fehler bei Durchlauf "+zaehler[0]+".",
-                        new DatumStub(2016, 11+zaehler[0]*2, 1, 42+zaehler[0]*2, 12, 0),
-                        datum
+                            "Die von IntervallIterator zurückgebenenen Datums-Werte müssen dem Wiederholungs-Muster entsprechen\n" +
+                                    "und den richtigen Bereich abdecken [EQUALS ABHÄNGIG!].\n" +
+                                    "Fehler bei Durchlauf "+zaehler[0]+".",
+                            new DatumStub(2016, 11+zaehler[0]*2, 1, 42+zaehler[0]*2, 12, 0),
+                            datum
                     );
                     zaehler[0]++;
                 }

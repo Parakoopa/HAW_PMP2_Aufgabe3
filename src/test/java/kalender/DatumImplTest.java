@@ -1,6 +1,5 @@
 package kalender;
 
-import kalender.DatumImpl;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -27,15 +26,13 @@ public class DatumImplTest {
 
     @Test
     public void compareTo() {
-        assertEquals(
-                "1.2.16 12:21 Uhr ist 741 größer als 1.2.2016 00:00 Uhr",
-                741,
-                this.datumWithTagUhrzeit.compareTo(datumWithTag)
+        assertTrue(
+                "1.2.16 12:21 Uhr ist größer als 1.2.2016 00:00 Uhr",
+                this.datumWithTagUhrzeit.compareTo(datumWithTag) > 0
         );
-        assertEquals(
-                "1.2.16 00:00 Uhr ist 741 kleiner als 1.2.2016 12:21 Uhr",
-                -741,
-                this.datumWithTag.compareTo(datumWithTagUhrzeit)
+        assertTrue(
+                "1.2.16 00:00 Uhr ist kleiner als 1.2.2016 12:21 Uhr",
+                this.datumWithTag.compareTo(datumWithTagUhrzeit) < 0
         );
         assertEquals(
                 "1.2.16 12:21 Uhr und 1.2.2016 12:21 Uhr sind gleich groß",

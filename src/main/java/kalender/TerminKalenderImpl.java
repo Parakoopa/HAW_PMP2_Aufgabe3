@@ -1,6 +1,8 @@
 package kalender;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -45,26 +47,48 @@ public class TerminKalenderImpl implements TerminKalender {
 
 	@Override
 	public Map<Datum, List<Termin>> termineFuerTag(Tag tag) {
-		return termine
-				.stream()
-				.flatMap(termin -> termin.termineAn(tag).values().stream())
-				.collect(Collectors.groupingBy(Termin::getDatum));
+		Map<Datum, List<Termin>> termineDesTages = new HashMap<>();
+		termine.stream()
+				.map(t -> t.termineAn(tag))
+				.forEach(m -> { // alle nach gleichem schema, termine für
+					for (Map.Entry<Datum, Termin> entry : m.entrySet()) {
+						if (!termineDesTages.containsKey(entry.getKey())) {
+							termineDesTages.put(entry.getKey(),
+									new ArrayList<>());
+						}
+						termineDesTages.get(entry.getKey()).add(
+								entry.getValue());
+					}
+				});
+		return termineDesTages;
 	}
 
 	@Override
 	public Map<Datum, List<Termin>> termineFuerWoche(Woche woche) {
-		return termine
-				.stream()
-				.flatMap(termin -> termin.termineIn(woche).values().stream())
-				.collect(Collectors.groupingBy(Termin::getDatum));
+		Map<Datum, List<Termin>> termineDerWoche = new HashMap<>();
+		termine.stream().map(t -> t.termineIn(woche)).forEach(m -> {
+			for (Map.Entry<Datum, Termin> entry : m.entrySet()) {
+				if (!termineDerWoche.containsKey(entry.getKey())) {
+					termineDerWoche.put(entry.getKey(), new ArrayList<>());
+				}
+				termineDerWoche.get(entry.getKey()).add(entry.getValue());
+			}
+		});
+		return termineDerWoche;
 	}
 
 	@Override
 	public Map<Datum, List<Termin>> termineFuerMonat(Monat monat) {
-		return termine
-				.stream()
-				.flatMap(termin -> termin.termineIn(monat).values().stream())
-				.collect(Collectors.groupingBy(Termin::getDatum));
+		Map<Datum, List<Termin>> termineDesMonats = new HashMap<>();
+		termine.stream().map(t -> t.termineIn(monat)).forEach(m -> {
+			for (Map.Entry<Datum, Termin> entry : m.entrySet()) {
+				if (!termineDesMonats.containsKey(entry.getKey())) {
+					termineDesMonats.put(entry.getKey(), new ArrayList<>());
+				}
+				termineDesMonats.get(entry.getKey()).add(entry.getValue());
+			}
+		});
+		return termineDesMonats;
 	}
 
 	@Override

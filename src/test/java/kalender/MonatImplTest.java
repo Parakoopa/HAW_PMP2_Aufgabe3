@@ -1,6 +1,5 @@
 package kalender;
 
-import kalender.MonatImpl;
 import org.junit.Before;
 import org.junit.Test;
 

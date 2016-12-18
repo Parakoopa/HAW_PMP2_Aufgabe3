@@ -1,11 +1,9 @@
 package kalender;
 
-import kalender.TagImpl;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Created by marco on 26.11.16.
@@ -62,7 +60,7 @@ public class TagImplTest {
                 this.tagMitTag.getMonat()
         );
     }
-    
+
     @Test
     public void getStart() {
         assertEquals(
@@ -111,7 +109,7 @@ public class TagImplTest {
                 this.tagJahrMonatTagImMonat.compareTo(tagMitTag)
         );
     }
-    
+
     @Test
     public void getTagImJahr() {
         assertEquals(
