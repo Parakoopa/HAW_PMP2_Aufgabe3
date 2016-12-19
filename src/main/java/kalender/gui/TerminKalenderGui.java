@@ -1,4 +1,4 @@
-package kalender.marco.gui;
+package kalender.gui;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,12 +12,12 @@ import javafx.stage.Stage;
 public class TerminKalenderGui extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        TabPane root = FXMLLoader.load(getClass().getResource("/marco.fxml"));
+        TabPane root = FXMLLoader.load(getClass().getResource("/abgabe.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(
-                getClass().getResource("/marco.css").toExternalForm());
+                getClass().getResource("/abgabe.css").toExternalForm());
         stage.setScene(scene);
-        stage.setTitle("Toller Terminkalender 2.0");
+        stage.setTitle("Toller Terminkalender 3.0");
         stage.show();
     }
 
