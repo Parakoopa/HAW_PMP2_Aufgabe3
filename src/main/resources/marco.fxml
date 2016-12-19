@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.HBox?>
+
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="kalender.marco.gui.controller.TerminKalenderController">
+  <tabs>
+    <Tab text="Monat">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                    <items>
+                        <Label fx:id="monthLabel" style="-fx-font-weight: bold;" text="Label" />
+                        <Pane HBox.hgrow="ALWAYS" />
+                        <Button fx:id="monthBack" mnemonicParsing="false" text="&lt;" />
+                        <DatePicker fx:id="monthDatePicker" />
+                        <Button fx:id="monthForward" mnemonicParsing="false" text="&gt;" />
+                    </items>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ToolBar>
+                  <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="monthDateTable" prefHeight="200.0" prefWidth="200.0">
+                          <columns>
+                            <TableColumn prefWidth="48.0" text="Tag" />
+                            <TableColumn prefWidth="102.0" text="Monat" />
+                              <TableColumn prefWidth="102.0" text="Jahr" />
+                          </columns>
+                        </TableView>
+                        <TableView fx:id="monthEvents" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn prefWidth="215.0" text="Datum" />
+                            <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="221.0" text="Beschreibung" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="163.0" text="Wiederholt von" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+    </Tab>
+      <Tab text="Tag">
+         <content>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <ToolBar prefHeight="40.0" prefWidth="200.0">
+                     <items>
+                        <Label fx:id="dayLabel" style="-fx-font-weight: bold;" text="Label" />
+                         <Pane HBox.hgrow="ALWAYS" />
+                        <Button fx:id="dayBack" mnemonicParsing="false" text="&lt;" />
+                        <DatePicker fx:id="dayDatePicker" />
+                        <Button fx:id="dayForward" mnemonicParsing="false" text="&gt;" />
+                     </items>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </ToolBar>
+                  <VBox prefHeight="200.0" prefWidth="100.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <TableView fx:id="dayEvents" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                           <columns>
+                              <TableColumn prefWidth="155.0" text="Datum" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="280.0" text="Beschreibung" />
+                              <TableColumn maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="164.0" text="Wiederholt von" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </content>
+      </Tab>
+      <Tab text="+" />
+  </tabs>
+</TabPane>
