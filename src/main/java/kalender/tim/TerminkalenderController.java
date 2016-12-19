@@ -2,13 +2,16 @@ package kalender.tim;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import kalender.interfaces.Datum;
+import kalender.interfaces.Tag;
 import kalender.interfaces.Termin;
 import kalender.interfaces.TerminKalender;
 
+import java.awt.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +25,7 @@ public class TerminkalenderController {
     private TableView<TerminImpl> monatsansicht_Tableview;
 
     @FXML
-    private TableView<?> tagesAnsicht_Tableview;
+    private TableView<TerminImpl> tagesAnsicht_Tableview;
 
     @FXML
     private TableColumn<Termin, String> monatsansicht_Tab_Datum;
@@ -45,6 +48,7 @@ public class TerminkalenderController {
     @FXML
     private DatePicker datePicker;
 
+    private TextComponent label;
 
     TerminlistenGenerator terminlistenGenerator = new TerminlistenGenerator();
     TerminKalender terminKalender = terminlistenGenerator.erstelleTermine();
@@ -53,9 +57,9 @@ public class TerminkalenderController {
         TableColumn<TerminImpl,String> nameColumn = new TableColumn<>("Name");
         monatsansicht_Tableview.getColumns().get(0).setCellValueFactory(new PropertyValueFactory<>("datum"));
 
-        monatsansicht_Tableview.setItems(getTermine(terminKalender));
+        //on date picker action -> get datum -> use datum to get terminlist ->add terminlsit to tableview columns
 
-        //datePicker.setOnAction(this::onDatePickerAction); //ToDo Remove error
+        datePicker.setOnAction(this::onDatePickerAction); 
         datePicker.setValue(LocalDate.now());
         datePicker.getValue().getYear();
 
@@ -64,9 +68,17 @@ public class TerminkalenderController {
 
     }
 
-    private ObservableList<TerminImpl> getTermine(TerminKalender terminKalender) {
+    private void onDatePickerAction(ActionEvent actionEvent) {
+        label.setText(datePicker.getValue().toString());
+      ObservableList<TerminImpl> tagesTermine = getTermine(terminKalender,datePicker.getValue());
+        fuegeTermineInTabelle(tagesTermine, tagesAnsicht_Tab_Beschreibung);
+    }
+
+
+    private ObservableList<TerminImpl> getTermine(TerminKalender terminKalender, LocalDate date) {
         ObservableList<TerminImpl> obsTermine = FXCollections.observableArrayList();
-        Map<Datum, List<Termin>> termine = terminKalender.termineFuerTag(new TagImpl(1, 1));
+        Tag tag = new TagImpl(date.getYear(), date.getDayOfYear());
+        Map<Datum, List<Termin>> termine = terminKalender.termineFuerTag(tag);
 
         for(List<Termin> termin : termine.values()) {
             obsTermine.add((TerminImpl) termin);
@@ -74,10 +86,8 @@ public class TerminkalenderController {
         return obsTermine;
     }
 
-    private void fuegeTermineInTabelle(Termin[] termine, TableColumn tableColumn) {
-        for(Termin termin : termine) {
-        //    tableColumn.setCellValueFactory("stuff");
-        }
+    private void fuegeTermineInTabelle( ObservableList<TerminImpl> termine, TableColumn tableColumn) {
+        tagesAnsicht_Tableview.setItems(termine);
 
     }
 
